@@ -25,7 +25,7 @@ export default class Home extends React.Component {
         <h1>
           Welcome <strong>{this.state.username}</strong>
         </h1>
-        <ChatRoom/>
+        <ChatRoom username={this.state.username} />
       </div>
 
     return(

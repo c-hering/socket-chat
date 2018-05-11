@@ -1,5 +1,6 @@
 import React from 'react';
 import { Panel, Form, FormGroup, FormControl, Col, Row, Button } from 'react-bootstrap';
+import { recieveNewMessage, sendNewMessage } from './Socket';
 import Message from './Message';
 
 export default class ChatRoom extends React.Component {
@@ -7,10 +8,15 @@ export default class ChatRoom extends React.Component {
     super(props)
     this.state = {
       value: '',
-      messages: ["> Test MEssage"]
+      messages: []
     }
+    recieveNewMessage(data => this.setState({
+      messages: this.state.messages.concat(data.uname + ": " + data.body)
+    }))
     this.handleChange = this.handleChange.bind(this)
   }
+
+
 
   handleChange = e => {
     this.setState({
@@ -30,7 +36,13 @@ export default class ChatRoom extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Form inline onSubmit={() => console.log("asdf")}>
+          <Form inline onSubmit={e => {
+            e.preventDefault()
+            sendNewMessage(e.target[0].value, this.props.username)
+            this.setState({
+              value: ''
+            })
+          }}>
             <FormGroup>
               <FormControl
                 type="text"
