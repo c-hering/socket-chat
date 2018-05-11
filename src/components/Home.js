@@ -12,8 +12,10 @@ export default class Home extends React.Component {
   }
 
   formSubmit = e => {
-    console.log("Form Submitted " + e.target[0].value)
     e.preventDefault()
+    this.setState({
+      username: e.target[0].value
+    })
   }
 
   render(){
