@@ -1,12 +1,13 @@
 import React from 'react';
 import { Panel, Form, FormGroup, FormControl, Col, Row, Button } from 'react-bootstrap';
+import Message from './Message';
 
 export default class ChatRoom extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       value: '',
-      messages: []
+      messages: ["> Test MEssage"]
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -18,7 +19,7 @@ export default class ChatRoom extends React.Component {
   }
 
   render(){
-    const messages = this.state.messages.length === 0 ? '' : this.state.messages.map(msg => <h4 style={{float: 'left'}}>{msg}</h4>)
+    const messages = this.state.messages.length === 0 ? '' : this.state.messages.map(msg => <Message messageText={msg} />)
     return(
       <div>
         <Row>
