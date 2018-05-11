@@ -1,6 +1,7 @@
 import React from 'react';
 import { Jumbotron, Panel } from 'react-bootstrap';
 import LoginForm from './LoginForm';
+import ChatRoom from './ChatRoom';
 import logo from '../logo.svg';
 
 export default class Home extends React.Component {
@@ -11,7 +12,7 @@ export default class Home extends React.Component {
     }
   }
 
-  formSubmit = e => {
+  userFormSubmit = e => {
     e.preventDefault()
     this.setState({
       username: e.target[0].value
@@ -19,7 +20,14 @@ export default class Home extends React.Component {
   }
 
   render(){
-    const content = this.state.username === '' ? <LoginForm onPress={e => this.formSubmit(e)}/> : <h1>logged in</h1>
+    const content = this.state.username === '' ? <LoginForm onPress={e => this.userFormSubmit(e)}/> :
+      <div>
+        <h1>
+          Welcome <strong>{this.state.username}</strong>
+        </h1>
+        <ChatRoom/>
+      </div>
+
     return(
       <div>
         <Jumbotron>

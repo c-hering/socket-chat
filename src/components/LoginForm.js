@@ -9,17 +9,12 @@ export default class LoginForm extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange = e => {
     this.setState({
       value: e.target.value
     })
-  }
-
-  handleSubmit = e => {
-    console.log(this.state.value)
   }
 
   render(){
