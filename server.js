@@ -3,7 +3,10 @@ const port = 8000;
 
 io.on('connection', client => {
   //new client connects, broadcast to all other clients
-  io.broadcast.emit('newMessage', {body: 'A new user has joined'});
+  io.broadcast.emit('newMessage', {
+    body: 'A new user has joined',
+    uname: ''
+  });
   //new message sent to server
   io.on('newMessage', data => {
     console.log(data)
