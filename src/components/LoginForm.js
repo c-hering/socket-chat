@@ -7,12 +7,19 @@ export default class LoginForm extends React.Component {
     this.state = {
       value: '',
     }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange = e => {
     this.setState({
       value: e.target.value
     })
+  }
+
+  handleSubmit = e => {
+    console.log(this.state.value)
   }
 
   render(){
@@ -27,7 +34,7 @@ export default class LoginForm extends React.Component {
               placeholder="username"
               onChange={this.handleChange}
             />{' '}
-            <Button>Submit</Button>
+            <Button type="submit">Submit</Button>
           </FormGroup>
         </Form>
       </Col>
