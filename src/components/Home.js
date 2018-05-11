@@ -11,8 +11,13 @@ export default class Home extends React.Component {
     }
   }
 
+  formSubmit = e => {
+    console.log("Form Submitted " + e.target[0].value)
+    e.preventDefault()
+  }
+
   render(){
-    const content = this.state.username === '' ? <LoginForm/> : <h1>logged in</h1>
+    const content = this.state.username === '' ? <LoginForm onPress={e => this.formSubmit(e)}/> : <h1>logged in</h1>
     return(
       <div>
         <Jumbotron>
