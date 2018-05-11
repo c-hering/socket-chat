@@ -25,7 +25,7 @@ export default class LoginForm extends React.Component {
   render(){
     return(
       <Col smOffset={4} sm={4}>
-        <Form inline>
+        <Form inline onSubmit={(e) => {console.log("asdfasdf"); e.preventDefault();}}>
           <FormGroup controlId="formInlineName">
             <h2>Please choose a username</h2>
             <FormControl
