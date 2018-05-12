@@ -1,6 +1,7 @@
 import React from 'react';
 import { Panel, Form, FormGroup, FormControl, Col, Row, Button } from 'react-bootstrap';
 import { recieveNewMessage, sendNewMessage } from './Socket';
+import StayScrolled from 'react-stay-scrolled';
 import Message from './Message';
 
 export default class ChatRoom extends React.Component {
@@ -16,8 +17,6 @@ export default class ChatRoom extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-
-
   handleChange = e => {
     this.setState({
       value: e.target.value
@@ -30,8 +29,10 @@ export default class ChatRoom extends React.Component {
       <div>
         <Row>
           <Col smOffset={3} sm={6}>
-            <Panel style={{height: 500}}>
-              {messages}
+            <Panel ref={el => {this.el = el}} style={{height: 500, 'overflow-y': 'auto'}}>
+              <StayScrolled component="div">
+                {messages}
+              </StayScrolled>
             </Panel>
           </Col>
         </Row>
@@ -40,7 +41,8 @@ export default class ChatRoom extends React.Component {
             e.preventDefault()
             sendNewMessage(e.target[0].value, this.props.username)
             this.setState({
-              value: ''
+              value: '',
+              messages: this.state.messages.concat("> " + e.target[0].value)
             })
           }}>
             <FormGroup>
